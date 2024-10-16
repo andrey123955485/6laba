@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Файлы</title>
+</head>
+<body>
+
+<h1>Файлы</h1>
+
+<table>
+    <tr>
+        <th>Название файла</th>
+        <th>Скачать</th>
+    </tr>
+    {% for file in files %}
+    <tr>
+        <td>{% if file.filename %}{{ file.filename }}{% else %}Без названия{% endif %}</td>
+        <td><a href="{{ file.download }}">Скачать</a></td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+<br>
+<h1>Загрузить файл</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="file" id="file" required>
+    <button type="submit">Загрузить</button>
+</form>
+<br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
